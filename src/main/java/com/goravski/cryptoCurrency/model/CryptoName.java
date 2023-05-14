@@ -9,10 +9,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum CryptoName {
-    BTC(90, "BTC"),
-    ETH(80, "ETH"),
-    SOL(48543, "SOL");
+    BTC(90),
+    ETH(80),
+    SOL(48543);
 
     private int CryptoId;
-    private String symbol;
+
+
 }
