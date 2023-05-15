@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table
 @Entity
 public class CryptoCurrency {
@@ -22,7 +24,7 @@ public class CryptoCurrency {
     private String symbol;
 
     @Column
-    private int cryptoId;
+    private int id;
     @Column
     private double price_usd;
 
