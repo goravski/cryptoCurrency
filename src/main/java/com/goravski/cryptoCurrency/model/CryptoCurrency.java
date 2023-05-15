@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
+@Entity
 public class CryptoCurrency {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,7 @@ public class CryptoCurrency {
     private String symbol;
 
     @Column
-    private int id;
+    private int cryptoId;
     @Column
     private double price_usd;
 
