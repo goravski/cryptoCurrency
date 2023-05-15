@@ -1,8 +1,6 @@
 package com.goravski.cryptoCurrency.utils;
 
 import com.goravski.cryptoCurrency.model.CryptoCurrency;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
