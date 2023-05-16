@@ -32,8 +32,6 @@ public class Users {
     @Size(max = 128)
     private String email;
 
-    @Getter
-    @Setter
     @Column(nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
     private Date registered = new Date();

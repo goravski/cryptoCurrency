@@ -29,8 +29,8 @@ public class CryptoCurrencyService {
         });
     }
 
-    public Optional<CryptoCurrency> getCryptoCurrencyByCryptoId(Long cryptoId) {
-        return cryptoCurrencyRepository.findLastById(cryptoId);
+    public Optional<CryptoCurrency> getCryptoCurrencyByCryptoId(int cryptoId) {
+        return cryptoCurrencyRepository.findActualById(cryptoId);
     }
 
 }
