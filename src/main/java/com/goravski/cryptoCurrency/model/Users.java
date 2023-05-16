@@ -35,4 +35,5 @@ public class Users {
     @Column(nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
     private Date registered = new Date();
+
 }
