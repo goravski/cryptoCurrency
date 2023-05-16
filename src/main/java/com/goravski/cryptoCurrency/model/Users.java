@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,5 +36,8 @@ public class Users {
     @Column(nullable = false, columnDefinition = "timestamp default now()", updatable = false)
     @NotNull
     private Date registered = new Date();
+
+    @OneToMany(mappedBy = "users")
+    private List<UserActive> userActive;
 
 }
