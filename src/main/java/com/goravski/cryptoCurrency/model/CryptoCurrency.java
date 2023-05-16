@@ -2,10 +2,10 @@ package com.goravski.cryptoCurrency.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.util.Date;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -28,4 +28,7 @@ public class CryptoCurrency {
     @Column
     private double price_usd;
 
+    @Column(nullable = false, columnDefinition = "timestamp default now()", updatable = false)
+    @NotNull
+    private Date saved = new Date();
 }
