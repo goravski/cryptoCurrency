@@ -33,8 +33,10 @@ public class UserActiveController {
     @PostMapping("/registration/{login}/{symbol}")
     public ResponseEntity<?> registerUser(@PathVariable String login, @PathVariable String symbol) {
         Users user = userService.getUserByLogin(login).orElseThrow(() -> new RuntimeException("User not found"));
+        log.debug("Get User {}", user);
         CryptoCurrency crypto = cryptoCurrencyService.getActualCrypto(symbol)
                 .orElseThrow(() -> new RuntimeException("Crypto not found"));
+        log.debug("Get actual crypto {}", crypto);
         UserActive userActive = new UserActive();
         userActive.setCryptoCurrency(List.of(crypto));
         userActive.setOldPriceUsd(crypto.getPrice_usd());

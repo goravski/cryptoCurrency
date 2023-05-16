@@ -22,10 +22,10 @@ public class UserActive {
     @Column
     private double oldPriceUsd;
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.EAGER)
     private Users users;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "symbol")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "symbol")
     private List<CryptoCurrency> cryptoCurrency;
 
 }

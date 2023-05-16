@@ -1,5 +1,6 @@
 package com.goravski.cryptoCurrency.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -37,6 +38,7 @@ public class Users {
     @NotNull
     private Date registered = new Date();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "users")
     private List<UserActive> userActive;
 

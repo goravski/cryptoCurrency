@@ -23,7 +23,7 @@ public class CryptoCurrencyService {
         this.ticker = ticker;
     }
 
-    @Scheduled(fixedRate = 10000) // every minute
+    @Scheduled(fixedRate = 60000 ) // every minute
     public void saveCryptoCurrency() {
         Stream.of(ticker.getCrypto()).forEach(crypto -> {
             cryptoCurrencyRepository.save(crypto);

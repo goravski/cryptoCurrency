@@ -25,17 +25,20 @@ public class CryptoController {
         this.cryptoCurrencyService = cryptoCurrencyService;
     }
 
-
-    @GetMapping("/")
-    public String viewStart() {
-        return "Start view here!";
-    }
-
+    /**
+     *
+     * @return list of available crypto
+     */
     @GetMapping("main")
     public List<CryptoName> viewList() {
         return List.of(CryptoName.values());
     }
 
+    /**
+     *
+     * @param symbol crypto
+     * @return actual data crypto from database
+     */
     @GetMapping("main/{symbol}")
     public ResponseEntity<CryptoCurrency> getActualCrypto(@PathVariable String symbol) {
         Optional<CryptoCurrency> optionalCryptoCurrency = cryptoCurrencyService.getActualCrypto(symbol);
