@@ -5,7 +5,6 @@ import com.goravski.cryptoCurrency.model.CryptoName;
 import com.goravski.cryptoCurrency.service.CryptoCurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,9 +36,9 @@ public class CryptoController {
         return List.of(CryptoName.values());
     }
 
-    @GetMapping("main/{cryptoId}")
-    public ResponseEntity<CryptoCurrency> getCryptoCurrencyByCryptoId(@PathVariable int cryptoId) {
-        Optional<CryptoCurrency> optionalCryptoCurrency = cryptoCurrencyService.getCryptoCurrencyByCryptoId(cryptoId);
+    @GetMapping("main/{symbol}")
+    public ResponseEntity<CryptoCurrency> getActualCrypto(@PathVariable String symbol) {
+        Optional<CryptoCurrency> optionalCryptoCurrency = cryptoCurrencyService.getActualCrypto(symbol);
         return optionalCryptoCurrency.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

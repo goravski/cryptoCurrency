@@ -10,7 +10,12 @@ import java.util.Optional;
 @Repository
 public interface CryptoCurrencyRepository extends JpaRepository<CryptoCurrency, Long> {
 
-    @Query("SELECT cr FROM CryptoCurrency cr WHERE cr.id = ?1 AND cr.saved = (SELECT MAX(cr.saved) FROM CryptoCurrency cr WHERE cr.id = ?1)")
-    Optional<CryptoCurrency> findActualById(int cryptoId);
+    @Query("SELECT cr FROM CryptoCurrency cr WHERE cr.symbol = ?1 " +
+            "AND cr.saved = (SELECT MAX(cr.saved) FROM CryptoCurrency cr WHERE cr.symbol = ?1)")
+    Optional<CryptoCurrency> findActualCrypto(String symbol);
+
+    @Query("SELECT cr FROM CryptoCurrency cr WHERE cr.symbol = ?1 " +
+            "AND cr.saved = (SELECT min (cr.saved) FROM CryptoCurrency cr WHERE cr.symbol = ?1)")
+    Optional<CryptoCurrency> findFirstById(String symbol);
 }
 
