@@ -7,16 +7,15 @@ import com.goravski.cryptoCurrency.model.Users;
 import com.goravski.cryptoCurrency.service.CryptoCurrencyService;
 import com.goravski.cryptoCurrency.service.UserActiveService;
 import com.goravski.cryptoCurrency.service.UserService;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@Slf4j
+@Log4j2
 public class UserActiveController {
     private final UserActiveService userActiveService;
     private final CryptoCurrencyService cryptoCurrencyService;
@@ -33,15 +32,14 @@ public class UserActiveController {
     @PostMapping("/registration/{login}/{symbol}")
     public ResponseEntity<?> registerUser(@PathVariable String login, @PathVariable String symbol) {
         Users user = userService.getUserByLogin(login).orElseThrow(() -> new RuntimeException("User not found"));
-        log.debug("Get User {}", user);
         CryptoCurrency crypto = cryptoCurrencyService.getActualCrypto(symbol)
                 .orElseThrow(() -> new RuntimeException("Crypto not found"));
-        log.debug("Get actual crypto {}", crypto);
         UserActive userActive = new UserActive();
-        userActive.setCryptoCurrency(List.of(crypto));
+        userActive.setSymbol(symbol);
         userActive.setOldPriceUsd(crypto.getPrice_usd());
         userActive.setUsers(user);
         UserActive registeredUser = userActiveService.registerUser(userActive);
+        log.info("REGISTERED USER ACTIVE {}", userActive);
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
