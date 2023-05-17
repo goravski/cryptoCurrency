@@ -1,18 +1,14 @@
 package com.goravski.cryptoCurrency.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.List;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table
 public class UserActive {
     @Id
@@ -25,7 +21,7 @@ public class UserActive {
     @ManyToOne (fetch = FetchType.EAGER)
     private Users users;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "symbol")
-    private List<CryptoCurrency> cryptoCurrency;
+    @Column
+    private String symbol;
 
 }
